@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Galentine’s Day – Glittery Sparkle 💖</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(to bottom right, #ffd6e8, #fff0f6);
+    position: relative;
+}
+
+/* Glittery Sparkle overlay */
+body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(white 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+/* Section layout */
+.section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2.6rem;
+    color: #d63384;
+}
+
+p {
+    font-size: 1.2rem;
+    max-width: 650px;
+    line-height: 1.6;
+    color: #6a1b4d;
+}
+
+/* Button */
+button {
+    margin-top: 25px;
+    padding: 12px 35px;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    border: none;
+    background: #ff4da6;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+/* Hidden second page */
+#trioPage {
+    display: none;
+}
+
+/* Trio Photo – smaller size */
+img {
+    width: 200px; /* Reduced from 280px */
+    border-radius: 20px;
+    margin: 20px 0;
+    box-shadow: 0 0 30px rgba(255, 77, 166, 0.4);
+}
+
+/* Floating hearts */
+.heart {
+    position: fixed;
+    top: -10px;
+    font-size: 20px;
+    animation: fall linear forwards;
+}
+@keyframes fall {
+    to { transform: translateY(110vh); opacity: 0; }
+}
+
+/* Sparkles */
+.sparkle {
+    position: fixed;
+    font-size: 14px;
+    animation: sparkleFloat 4s linear forwards;
+}
+@keyframes sparkleFloat {
+    to { transform: translateY(-100px); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- FIRST PAGE -->
+<div class="section" id="intro">
+    <h1>Happy Galentine’s Day 💖</h1>
+    <p>
+        Three girls.<br>
+        One brain cell.😌✨<br>
+    </p>
+    <button onclick="showTrio()">Open Trio Surprise 💌</button>
+</div>
+
+<!-- SECOND PAGE -->
+<div class="section" id="trioPage">
+    <h1>To My Forever Trio 👯‍♀️👯‍♀️</h1>
+
+    <img src="photo.jpg" alt="Trio Photo">
+
+    <p>
+        We laugh too loud,<br>
+        cry over nonsense,<br>
+        hype each other like queens,💅✨<br>
+        No matter where we go,this trio stays iconic.<br>
+        Love you both forever 💖
+    </p>
+</div>
+
+<audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function showTrio() {
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("trioPage").style.display = "flex";
+    document.getElementById("music").play().catch(()=>{});
+    startHearts();
+    startSparkles();
+}
+
+/* Hearts falling */
+function startHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+    }, 300);
+}
+
+/* Sparkles */
+function startSparkles() {
+    setInterval(() => {
+        const sparkle = document.createElement("div");
+        sparkle.className = "sparkle";
+        sparkle.innerHTML = "✨";
+        sparkle.style.left = Math.random() * 100 + "vw";
+        sparkle.style.top = Math.random() * 100 + "vh";
+        document.body.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 4000);
+    }, 400);
+}
+</script>
+
+</body>
+</html>
